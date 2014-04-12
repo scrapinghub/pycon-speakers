@@ -5,17 +5,22 @@ from scrapy.selector import Selector
 from scrapy.http import Request
 
 from pycon_speakers.items import Speaker
+from pycon_speakers.loaders import SpeakerLoader
 
 
 class PyConSpider(Spider):
     name = 'us.pycon.org'
-    base_url = 'http://us.pycon.org/%s/schedule/talks/list/'
-    years = None
+    years = '2010,2011,2012,2013,2014'
 
     def start_requests(self):
-        years = self.years.split(',') if self.years else range(2011, 2015)
+        years = [int(x) for x in self.years.split(',')]
         for year in years:
-            yield Request("https://us.pycon.org/{0}/schedule/".format(year), meta={'year': year})
+            meta = {'year': year}
+            if 2011 <= year <= 2014:
+                yield Request("https://us.pycon.org/{0}/schedule/".format(year), meta=meta)
+            elif year == 2010:
+                yield Request("https://web.archive.org/web/20100712205448/http://us.pycon.org/2010/conference/talks/",
+                              callback=self.parse_2010, meta=meta)
 
     def parse(self, response):
         sel = Selector(response)
@@ -26,6 +31,14 @@ class PyConSpider(Spider):
                           meta=response.meta)
 
     def scrape_speakers(self, response):
-        sel = Selector(response)
-        speaker =  sel.xpath("//a[contains(@href, '/speaker/profile/')]/text()").extract()[0]
-        yield Speaker(name=speaker, year=response.meta['year'])
+        il = SpeakerLoader(response=response)
+        il.add_xpath('name', "//a[contains(@href, '/speaker/profile/')]")
+        il.add_value('year', str(response.meta['year']))
+        yield il.load_item()
+
+    def parse_2010(self, response):
+        for section in Selector(response).xpath('//div[@class="proposal_list_summary"]'):
+            il = SpeakerLoader(selector=section)
+            il.add_xpath('name', './span[1]')
+            il.add_value('year', str(response.meta['year']))
+            yield il.load_item()
