@@ -9,12 +9,12 @@ from pycon_speakers.items import Speaker
 class PyConSpider(Spider):
     name = 'us.pycon.org'
     base_url = 'http://us.pycon.org/%s/schedule/talks/list/'
+    years = None
 
-    def __init__(self, *args, **kwargs):
-        self.years = kwargs.get('years', '').split(',')
 
     def start_requests(self):
-        for year in self.years or [2014, 2013, 2012, 2011]:
+        years = self.years.split(',') if self.years else range(2011, 2015)
+        for year in years:
             yield Request("https://us.pycon.org/%s/schedule/" % str(year), callback=self.follow_presentation_links, meta={'conf_year': year})
 
     def follow_presentation_links(self, response):
