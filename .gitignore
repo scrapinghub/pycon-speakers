@@ -1,2 +1,4 @@
 *.pyc
 .scrapy
+project.egg-info/
+build/
