@@ -1,7 +1,7 @@
 PyCon speakers spider
 =====================
 
-Scrapy spider to scrape the information about the speakers from the Python conferences since 2012.
+Scrapy spider to scrape the information about the speakers from the Python conferences since 2011.
 
 run it
 ------

@@ -11,7 +11,7 @@ class PyConSpider(Spider):
     base_url = 'http://us.pycon.org/%s/schedule/talks/list/'
 
     def start_requests(self):
-        for year in [2014, 2013, 2012]:
+        for year in [2014, 2013, 2012, 2011]:
             yield Request("https://us.pycon.org/%s/schedule/" % str(year), callback=self.follow_presentation_links, meta={'conf_year': year})
 
     def follow_presentation_links(self, response):
