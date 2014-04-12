@@ -9,7 +9,7 @@ from pycon_speakers.loaders import SpeakerLoader
 
 class PyConSpider(Spider):
     name = 'us.pycon.org'
-    years = '2010,2011,2012,2013,2014'
+    years = '2008,2009,2010,2011,2012,2013,2014'
 
     def start_requests(self):
         years = [int(x) for x in self.years.split(',')]
