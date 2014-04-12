@@ -6,8 +6,17 @@ from .items import Speaker
 
 
 def _cleanup_name(name):
+    """Cleanup extras in names
+
+    >>> _cleanup_name(u'Collin Winter bio')
+    u'Collin Winter'
+    >>> _cleanup_name(u'Collin Winter (Google / Unladen Shallow) bio')
+    u'Collin Winter'
+    >>> _cleanup_name(u'Collin Winter (Google / Unladen Shallow)')
+    u'Collin Winter'
+    """
     return _STRIPRE.sub(u'', name, re.I)
-_STRIPRE = re.compile(ur'\s*\(.*\)( bio|$)?')
+_STRIPRE = re.compile(ur'\s*(\(.*\))?( bio)?$')
 
 
 class SpeakerLoader(XPathItemLoader):
