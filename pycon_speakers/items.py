@@ -9,3 +9,4 @@ class Speaker(Item):
     name = Field()
     year = Field()
     gender = Field()
+    image_urls = Field()
