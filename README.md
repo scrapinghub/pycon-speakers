@@ -16,3 +16,11 @@ Run a spider:
 
     scrapy crawl us.pycon.org
 
+Scrapy Cloud Test Project
+-------------------------
+
+See https://dash.scrapinghub.com/p/2878/
+
+    username: pycon2014
+    password: pycon2014
+
