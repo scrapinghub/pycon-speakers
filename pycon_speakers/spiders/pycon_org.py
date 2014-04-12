@@ -4,7 +4,6 @@ from scrapy.spider import Spider
 from scrapy.selector import Selector
 from scrapy.http import Request
 
-from pycon_speakers.items import Speaker
 from pycon_speakers.loaders import SpeakerLoader
 
 
@@ -19,7 +18,13 @@ class PyConSpider(Spider):
             if 2011 <= year <= 2014:
                 yield Request("https://us.pycon.org/{0}/schedule/".format(year), meta=meta)
             elif year == 2010:
-                yield Request("https://web.archive.org/web/20100712205448/http://us.pycon.org/2010/conference/talks/",
+                yield Request('https://web.archive.org/web/20101213081713/http://us.pycon.org/2010/conference/talks/',
+                              callback=self.parse_2010, meta=meta)
+            elif year == 2009:
+                yield Request('https://web.archive.org/web/20091223043735/http://us.pycon.org/2009/conference/talks',
+                              callback=self.parse_2010, meta=meta)
+            elif year == 2008:
+                yield Request('https://web.archive.org/web/20081216074155/http://us.pycon.org/2008/conference/talks/',
                               callback=self.parse_2010, meta=meta)
 
     def parse(self, response):
