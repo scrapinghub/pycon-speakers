@@ -19,6 +19,7 @@ def _cleanup_name(name):
     >>> _cleanup_name(u'Ivan Krstic / Harvard University (presently..)')
     u'Ivan Krstic'
     """
+    name = name.replace('\t', ' ')
     name = _STRIPRE1.sub(u'', name, re.I)
     return _STRIPRE2.sub(u'', name, re.I)
 
