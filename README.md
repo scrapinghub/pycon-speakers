@@ -12,33 +12,18 @@ please see the [Scrapy installation guide](http://doc.scrapy.org/en/latest/intro
 
 To get started with the sprint:
 
-1.  Pick a currently-active conference website that *isn't* PyCon:
-    Strange Loop, OSCON, an academic conference like ICSE, or anything else.
+1.  Pick a currently-active conference that hasn't yet been scraped and write a Scrapy Spider for that conference. You can see conferences that have been scraped already by typing `scrapy list`.
 
-2.  Create a sub-directory named something like pycon-2014 or icse-2013 (i.e., conference dash year).
-    We'll worry about scrapers that work for multiple years of a conference later.
+2.  Create a Scrapy Spider for the conference you wish to scrape, in the pycon_speakers/spiders/ directory. It should crawl as many years of the conference as possible and extract Speaker items.
 
-3.  Create a program called `scraper.py`
-    that can be run without any command-line arguments to get speakers' names for just that site.
-    You can use the code that is already in this repository,
-    or start from scratch:
-    we'll figure out how to refactor things after we have half a dozen.
+3.  Test your spider
 
-4.  The output of the scraper should look something like this:
+4. Submit a pull request
 
-        Event Name,Year,URL
-        Personal Name 1,Family Name 1,Num Appearances,Gender
-        Personal Name 2,Family Name 2,Num Appearances,Gender
-        ...,...,...
+Other tasks:
 
-    The first row is metadata; each row after that is information about a single speaker.
-    The personal names are what we (probably) use to infer gender,
-    the family name is there for completeness,
-    "Num Appearances" is how many times they appeared to be a speaker
-    (some people give multiple talks at a single conference),
-    and the gender is M, F, or U (unknown).
+1.  Gender identification - Improve the gender identification in pycon_speakers/pipelines.py
 
-5.  Send a pull request.
 
 Running the Scrapy Code
 -----------------------
