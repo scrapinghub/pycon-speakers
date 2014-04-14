@@ -22,7 +22,8 @@ To get started with the sprint:
 
 Other tasks:
 
-1.  Gender identification - Improve the gender identification in pycon_speakers/pipelines.py
+1.  Improve the gender identification in pycon_speakers/pipelines.py
+2.  Chart results
 
 
 Running the Scrapy Code
