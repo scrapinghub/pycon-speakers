@@ -9,11 +9,12 @@ class StrataSpider(Spider):
     """A spider to crawl Strata conference speakers.
     """
     name = 'strataconf'
-    year_list = range(2011, 2014)
+    years = '2013,2012,2011'
     base_url = 'http://strataconf.com/strata{year:d}/public/schedule/speakers'
 
     def start_requests(self):
-        for year in self.year_list:
+        years = [int(x.strip()) for x in self.years.split(',')]
+        for year in years:
             meta = {'year': year}
             url = self.base_url.format(year=year)
             yield Request(url, meta=meta)
