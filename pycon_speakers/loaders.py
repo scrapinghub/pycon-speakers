@@ -14,9 +14,16 @@ def _cleanup_name(name):
     u'Collin Winter'
     >>> _cleanup_name(u'Collin Winter (Google / Unladen Shallow)')
     u'Collin Winter'
+    >>> _cleanup_name(u'Jim Fulton / Zope Corporation')
+    u'Jim Fulton'
+    >>> _cleanup_name(u'Ivan Krstic / Harvard University (presently..)')
+    u'Ivan Krstic'
     """
-    return _STRIPRE.sub(u'', name, re.I)
-_STRIPRE = re.compile(ur'\s*(\(.*\))?( bio)?( -)?( \.)?$')
+    name = _STRIPRE1.sub(u'', name, re.I)
+    return _STRIPRE2.sub(u'', name, re.I)
+
+_STRIPRE1 = re.compile(ur'\s*(\(.*\))?( bio)?( -)?( \.)?$')
+_STRIPRE2 = re.compile(ur'\s*(/.+)$')
 
 
 class SpeakerLoader(ItemLoader):

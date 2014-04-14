@@ -33,6 +33,9 @@ class PyConSpider(Spider):
                 url = 'https://web.archive.org/web/{0}/http://us.pycon.org/apps07/talks/'
                 yield Request(url.format(ARCHIVE[year], year), meta=meta,
                               callback=self._parse_2010)
+            elif year == 2006:
+                url = 'https://wiki.python.org/moin/PyCon2006/Talks'
+                yield Request(url, meta=meta, callback=self._parse_2006)
 
     def parse(self, response):
         sel = Selector(response)
@@ -53,5 +56,13 @@ class PyConSpider(Spider):
         for section in Selector(response).xpath('//div[@class="proposal_list_summary"]'):
             il = SpeakerLoader(selector=section)
             il.add_xpath('name', './span[1]')
+            il.add_value('year', str(response.meta['year']))
+            yield il.load_item()
+
+    def _parse_2006(self, response):
+        sel = Selector(response)
+        for name in sel.xpath('//div[@id="content"]/p[strong]/following-sibling::*[1]'):
+            il = SpeakerLoader(selector=name)
+            il.add_xpath('name', '.')
             il.add_value('year', str(response.meta['year']))
             yield il.load_item()
