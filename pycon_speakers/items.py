@@ -6,6 +6,7 @@ from scrapy.item import Item, Field
 
 
 class Speaker(Item):
+    conference = Field()
     name = Field()
     year = Field()
     gender = Field()
