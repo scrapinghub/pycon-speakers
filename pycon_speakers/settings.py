@@ -16,5 +16,6 @@ HTTPCACHE_ENABLED = True
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 ITEM_PIPELINES = {
     'pycon_speakers.pipelines.GenderPipeline': 20,
+    'pycon_speakers.pipelines.DefaultsPipeline': 30,
 }
 #USER_AGENT = 'pycon_speakers (+http://www.yourdomain.com)'

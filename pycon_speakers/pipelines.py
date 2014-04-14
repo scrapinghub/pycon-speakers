@@ -12,3 +12,15 @@ class GenderPipeline(object):
 
     def _infer_gender(self, item):
         return 'unknown'
+
+
+class DefaultsPipeline(object):
+    """
+    Set default values.
+
+    conference is set to spider name
+    """
+
+    def process_item(self, item, spider):
+        item.setdefault('conference', spider.name)
+        return item
