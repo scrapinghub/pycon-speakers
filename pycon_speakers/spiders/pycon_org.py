@@ -50,6 +50,7 @@ class PyConSpider(Spider):
         il = SpeakerLoader(response=response)
         il.add_xpath('name', "//a[contains(@href, '/speaker/profile/')]")
         il.add_value('year', str(response.meta['year']))
+        il.add_value('conference', 'PyCon US')
         yield il.load_item()
 
     def _parse_2010(self, response):
@@ -57,6 +58,7 @@ class PyConSpider(Spider):
             il = SpeakerLoader(selector=section)
             il.add_xpath('name', './span[1]')
             il.add_value('year', str(response.meta['year']))
+            il.add_value('conference', 'PyCon US')
             yield il.load_item()
 
     def _parse_2006(self, response):
@@ -65,4 +67,5 @@ class PyConSpider(Spider):
             il = SpeakerLoader(selector=name)
             il.add_xpath('name', '.')
             il.add_value('year', str(response.meta['year']))
+            il.add_value('conference', 'PyCon US')
             yield il.load_item()

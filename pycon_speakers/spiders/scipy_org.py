@@ -55,6 +55,7 @@ class SciPySpider(Spider):
                     sl = SpeakerLoader(selector=sel, response=response)
                     sl.add_value('name', author)
                     sl.add_value('year', response.meta['year'])
+                    sl.add_value('conference', 'SciPy')
                     yield sl.load_item()
 
     def parse_2009(self, response):
@@ -69,6 +70,7 @@ class SciPySpider(Spider):
             sl = SpeakerLoader(selector=sel, response=response)
             sl.add_value('name', author)
             sl.add_value('year', response.meta['year'])
+            sl.add_value('conference', 'SciPy')
             yield sl.load_item()
 
     def parse_2010(self, response):
@@ -78,6 +80,7 @@ class SciPySpider(Spider):
                 sl = SpeakerLoader(selector=sel, response=response)
                 sl.add_value('name', author)
                 sl.add_value('year', response.meta['year'])
+                sl.add_value('conference', 'SciPy')
                 yield sl.load_item()
 
     def parse_2011(self, response):
@@ -94,6 +97,7 @@ class SciPySpider(Spider):
             sl = SpeakerLoader(selector=sel, response=response)
             sl.add_value('name', author)
             sl.add_value('year', response.meta['year'])
+            sl.add_value('conference', 'SciPy')
             yield sl.load_item()
 
     def parse_2013(self, response):
@@ -106,4 +110,6 @@ class SciPySpider(Spider):
                 # FIXME: most author entry have the institution at the end.
                 sl.add_value('name', author)
                 sl.add_value('year', response.meta['year'])
+                sl.add_value('conference', 'SciPy')
+
                 yield sl.load_item()

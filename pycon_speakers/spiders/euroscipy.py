@@ -33,6 +33,7 @@ class EuroSciPySpider(Spider):
             sl = SpeakerLoader(selector=sel, response=response)
             # TODO: handle/remove affiliation value and possibly multiple
             # authors.
+            sl.add_value('conference', 'EuroSciPy')
             sl.add_value('name', author)
             sl.add_value('year', response.meta['year'])
             yield sl.load_item()
