@@ -22,4 +22,5 @@ class OsConSpider(Spider):
             il = SpeakerLoader(response=response)
             il.add_value('name', speaker)
             il.add_value('year', str(response.meta['year']))
+            il.add_value('conference', 'OSCON')
             yield il.load_item()

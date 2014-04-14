@@ -29,6 +29,7 @@ class EuroPython(Spider):
             il.add_css('name', ".name > a::text")
             il.add_css('image_urls', "img::attr(src)")
             il.add_value('year', str(response.meta['cookiejar']))
+            il.add_value('conference', 'EuroPython')
             yield il.load_item()
         # pagination
         pages = sel.css('.pagination a::attr(href)').extract()
@@ -40,6 +41,7 @@ class EuroPython(Spider):
         speakers = sel.css('.archive .talk .speakers > .speaker')
         for speaker in speakers:
             il = SpeakerLoader(selector=speaker)
+            il.add_value('conference', 'EuroPython')
             il.add_css('name', "span::text")
             il.add_css('image_urls', "a > img::attr(src)", lambda x:
                         [urljoin(response.url, y) for y in x])
