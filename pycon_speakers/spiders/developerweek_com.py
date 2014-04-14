@@ -14,10 +14,10 @@ class PyConSpider(Spider):
     base_url = "http://confreaks.com/"
 
     def start_requests(self):
-        # url = "http://developerweek2014conferenceexpo.sched.org/directory/speakers"
-        # meta = {'year': '2014', 'conference': self.name}
-        # yield Request(url, meta=meta,
-        #               callback=self._parse_2014)
+        url = "http://developerweek2014conferenceexpo.sched.org/directory/speakers"
+        meta = {'year': '2014', 'conference': self.name}
+        yield Request(url, meta=meta,
+                      callback=self._parse_2014)
 
         url = "http://www.developerweek.com/2013-sf/index/allspeakers"
         meta = {'year': '2013', 'conference': self.name}
