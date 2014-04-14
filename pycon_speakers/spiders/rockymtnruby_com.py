@@ -11,7 +11,8 @@ class RmRubySpider(Spider):
     name = 'rockymtnruby.com'
     
     def start_requests(self):
-        scraping_dict = {2012: [("http://rockymtnruby.com/2012", self._parse_2012),
+        scraping_dict = {2011: [('http://confreaks.com/events/rockymtnruby2011', self._parse_2011)],
+                        2012: [("http://rockymtnruby.com/2012", self._parse_2012),
                                 ("http://rockymtnruby.com/{0}/workshop", self._parse_workshop_2012)
                                 ],
                         2013: [("http://rockymtnruby.com/2013", self._parse_2013),
@@ -25,6 +26,13 @@ class RmRubySpider(Spider):
                 yield Request(url.format(year), meta=meta,
                               callback=callback)
 
+
+    def _parse_2011(self, response):
+        for section in Selector(response).xpath("//div[@class = 'videos']//div[@class = 'presenters']/a"):
+            il = SpeakerLoader(selector=section)
+            il.add_xpath('name', ".")
+            il.add_value('year', str(response.meta['year']))
+            yield il.load_item()
 
     def _parse_2012(self, response):
         for section in Selector(response).xpath("//div[contains(@class,'speaker')]"):
