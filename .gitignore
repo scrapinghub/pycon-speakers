@@ -2,3 +2,5 @@
 .scrapy
 project.egg-info/
 build/
+
+*.json
