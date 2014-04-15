@@ -37,6 +37,10 @@ Run a spider:
 
     scrapy crawl us.pycon.org
 
+Run all spiders and generate a data.csv file:
+
+    run.sh
+
 Scrapy Cloud Test Project
 -------------------------
 
