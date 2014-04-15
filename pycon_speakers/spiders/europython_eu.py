@@ -27,6 +27,7 @@ class EuroPython(Spider):
         for speaker in speakers:
             il = SpeakerLoader(selector=speaker)
             il.add_css('name', ".name > a::text")
+            il.add_css('name', ".name::text")
             il.add_css('image_urls', "img::attr(src)")
             il.add_value('year', str(response.meta['cookiejar']))
             il.add_value('conference', 'EuroPython')
