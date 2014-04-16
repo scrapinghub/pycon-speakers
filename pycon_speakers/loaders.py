@@ -23,8 +23,8 @@ def _cleanup_name(name):
     name = _STRIPRE1.sub(u'', name, re.I)
     return _STRIPRE2.sub(u'', name, re.I)
 
-_STRIPRE1 = re.compile(ur'\s*(\(.*\))?( bio)?( -)?( \.)?$')
-_STRIPRE2 = re.compile(ur'\s*(/.+)$')
+_STRIPRE1 = re.compile(ur'\s*(\(.*\))?( bio)?( -)?( \.)?$', re.DOTALL)
+_STRIPRE2 = re.compile(ur'\s*(/.+)$', re.DOTALL)
 
 
 class SpeakerLoader(ItemLoader):
