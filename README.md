@@ -26,6 +26,8 @@ Other tasks:
 2.  Review crawled data and fix spiders when the data is incorrect
 3.  Chart results
 
+Here what we have for now:
+![Gender Bar Chart](/gender_plot.png)
 
 Running the Scrapy Code
 -----------------------
