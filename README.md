@@ -1,5 +1,5 @@
-PyCon Speakers Spider
-=====================
+Speakers Spider (PyCon 2014 sprint)
+===================================
 
 This project will:
 
