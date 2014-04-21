@@ -2,5 +2,6 @@
 .scrapy
 project.egg-info/
 build/
-
+venv/
+.idea/
 *.json
